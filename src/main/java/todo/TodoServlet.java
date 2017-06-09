@@ -15,15 +15,21 @@ import java.util.Map;
 public class TodoServlet extends HttpServlet {
 
    private TodoDao todoDao;
-   private TodoView todosView;
-
+   private TodoView todoView;
+   private TodoChain todoChain;
+    @Override
+    public void init() throws ServletException {
+        todoDao = new TodoDaoMock();
+        todoView = new TodoViewHtml();
+        todoChain = new TodoChain(todoView, todoDao);
+    }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter writer = resp.getWriter();
         resp.setContentType("text/html");
-        List<TodoModel> allTodos = todoDao.getAllTodos();
-        String todosAsHtml = todosView.show(allTodos);
-        writer.println(todosAsHtml);
+//        List<TodoModel> allTodos = todoDao.getAllTodos();
+//        String todosAsHtml = todosView.show(allTodos);
+//        writer.println(todosAsHtml);
 //        writer.println("<ul>");
 //        for(TodoModel model : allTodos) {
 //            writer.println("<li>");
@@ -38,12 +44,8 @@ public class TodoServlet extends HttpServlet {
 //            writer.println("</li>");
 //        }
 //        writer.println("</ul>");
-
+        writer.println(todoChain.invoke(req.getPathInfo()));
     }
 
-    @Override
-    public void init() throws ServletException {
-        todoDao = new TodoDaoMock();
-        todosView = new TodoViewHtml();
-    }
+
 }
