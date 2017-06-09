@@ -10,7 +10,7 @@ public class TodoViewHtml implements TodoView{
     @Override
     public String show(List<TodoModel> todos) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append("ol");
+//        stringBuilder.append("ol");
 //        for (TodoModel todo: todos) {
 //            stringBuilder.append(show(todo));
 //        }
