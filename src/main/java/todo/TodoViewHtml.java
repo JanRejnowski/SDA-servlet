@@ -5,7 +5,7 @@ import java.util.List;
 /**
  * Created by RENT on 2017-06-08.
  */
-public class TodoViewHtml implements TodoView{
+public class TodoViewHtml implements TodoView {
 
     @Override
     public String show(List<TodoModel> todos) {
@@ -36,4 +36,20 @@ public class TodoViewHtml implements TodoView{
         stringBuilder.append("</li>\n");
         return stringBuilder.toString();
     }
+
+
+    @Override
+    public String showAddForm() {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("<form method=\"get\" action=\"/hello-servlets-1.0-SNAPSHOT/todo/add\"></br>\n");
+        stringBuilder.append("<input type=\"text\" name=\"name\" /></br>\n");
+        stringBuilder.append("<input type=\"text\" name=\"description\" /></br>\n");
+        stringBuilder.append("<input type=\"checkbox\" name=\"checked\" /></br>\n");
+        stringBuilder.append("<input type=\"number\" name=\"priority\" /></br>\n");
+        stringBuilder.append("<input type=\"date\" name=\"date\" /></br>\n");
+        stringBuilder.append("<input type=\"submit\"/></br>\n");
+        stringBuilder.append("</form></br>\n");
+        return stringBuilder.toString();
+    }
 }
+
