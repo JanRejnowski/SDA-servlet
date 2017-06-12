@@ -1,5 +1,8 @@
 package todo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 /**
  * Created by RENT on 2017-06-09.
  */
@@ -23,7 +26,14 @@ public class AddTodoChainElement implements TodoChainElement{
     }
 
     @Override
-    public String action() {
-        return todoView.showAddForm();
+    public String action(HttpServletRequest req, HttpServletResponse resp) {
+        String valueToReturn = "<h1>OK</h1>";
+        if(TodoUtil.isWriteRequest(req)) {
+            TodoModel todoModel = TodoMapper.map(req);
+            todoDao.addTodo(todoModel);
+        } else {
+            valueToReturn = todoView.showAddForm();
+        }
+        return valueToReturn;
     }
 }

@@ -44,7 +44,7 @@ public class TodoServlet extends HttpServlet {
 //            writer.println("</li>");
 //        }
 //        writer.println("</ul>");
-        writer.println(todoChain.invoke(req.getPathInfo()));
+        writer.println(todoChain.invoke(req,resp));
     }
 
 

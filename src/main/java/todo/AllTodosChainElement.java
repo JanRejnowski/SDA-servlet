@@ -1,5 +1,7 @@
 package todo;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
@@ -26,7 +28,7 @@ public class AllTodosChainElement implements TodoChainElement{
     }
 
     @Override
-    public String action() {
+    public String action(HttpServletRequest req, HttpServletResponse resp) {
         List<TodoModel> allTodos = todoDao.getAllTodos();
         return todoView.show(allTodos);
     }
