@@ -45,4 +45,14 @@ public class TodoMapper {
     private static int getPriority(Map<String, String[]> map) {return Integer.parseInt(map.get("priority") [0]);}
 
     private static boolean getChecked(Map<String, String[]> map) {return map.containsKey("checked");}
+
+    public static String map (TodoModel todoModel) {
+        StringBuilder stringBuilder = new StringBuilder();
+        return stringBuilder.append(todoModel.getName() + "\r\n")
+        .append(todoModel.getDescription() + "\r\n")
+        .append(String.valueOf(todoModel.isChecked()) + "\r\n")
+        .append(todoModel.getPriority() + "\r\n")
+        .append(todoModel.getDate() + "\r\n")
+        .toString();
+    }
 }
