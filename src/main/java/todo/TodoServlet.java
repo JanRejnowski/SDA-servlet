@@ -6,8 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.Map;
 
 /**
  * Created by RENT on 2017-06-08.
@@ -19,7 +17,8 @@ public class TodoServlet extends HttpServlet {
    private TodoChain todoChain;
     @Override
     public void init() throws ServletException {
-        todoDao = new TodoDaoMock();
+//        todoDao = new TodoDaoMock();
+        todoDao = new TodoDaoFile(getServletContext(), "/todo/data");
         todoView = new TodoViewHtml();
         todoChain = new TodoChain(todoView, todoDao);
     }
