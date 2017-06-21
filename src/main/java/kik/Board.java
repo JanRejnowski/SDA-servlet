@@ -1,5 +1,7 @@
 package kik;
 
+import java.util.Iterator;
+
 /**
  * Created by RENT on 2017-06-20.
  */
@@ -36,4 +38,42 @@ public class Board {
         }
         return stringBuilder.toString();
     }
+
+    private boolean checkIsEmpty (Board board) {
+        for (int i = 0; i < board.array.length; i++) {
+            if(board.array[i] == null) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isGameFinished() {
+
+    }
+
+    private boolean isFulfilled() {
+
+    }
+
+    private boolean areValuesEqual(int i, int j, int k) {
+        return array[i] != null && array[i].equals(array[j]) && array[i].equals(array[k]);
+    }
+
+    private boolean checkRows() {
+        boolean sum = false;
+        for (int i = 0; i < 3; i++) {
+            sum = sum || ;
+        }
+    }
+
+    private boolean checkColumns() {
+
+    }
+
+    private boolean checkDiagonals(){
+
+    }
+
+
 }
