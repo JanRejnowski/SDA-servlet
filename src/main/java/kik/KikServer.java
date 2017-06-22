@@ -25,20 +25,25 @@ public class KikServer {
         boolean status;
         while (flag) {
             System.out.println(board.toString());
-            do {
-                System.out.println("Insert position: ");
-                String number = scanner.nextLine();
-                status = board.addMove(Integer.valueOf(number), "X");
-                if (status) {
-                    socketOut.write(number + "\n");
-                    socketOut.flush();
-                } else {
-                    System.out.println("Invalid position!");
-                }
-            } while (!status);
-                String opponentPosition = socketIn.nextLine();
-                board.addMove(Integer.valueOf(opponentPosition), "O");
+            yourTurn(scanner, socketOut, board);
+            String opponentPosition = socketIn.nextLine();
+            board.addMove(Integer.valueOf(opponentPosition), "O");
         }
 
+    }
+
+    private static void yourTurn(Scanner scanner, BufferedWriter socketOut, Board board) throws IOException {
+        boolean status;
+        do {
+            System.out.println("Insert position: ");
+            String number = scanner.nextLine();
+            status = board.addMove(Integer.valueOf(number), "X");
+            if (status) {
+                socketOut.write(number + "\n");
+                socketOut.flush();
+            } else {
+                System.out.println("Invalid position!");
+            }
+        } while (!status);
     }
 }

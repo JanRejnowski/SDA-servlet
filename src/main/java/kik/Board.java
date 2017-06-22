@@ -8,6 +8,8 @@ import java.util.Iterator;
 public class Board {
     private String[] array;
 
+    private int counter = 0;
+
     public Board() {
         array = new String[9];
     }
@@ -16,6 +18,7 @@ public class Board {
         boolean valueToReturn = false;
         if(checkRange(position) && isPositionEmpty(position)) {
             array[position - 1] = sign;
+            counter++;
             valueToReturn = true;
         }
         return valueToReturn;
@@ -49,11 +52,11 @@ public class Board {
     }
 
     private boolean isGameFinished() {
-
+        return  isFulfilled() || checkRows() || checkColumns() || checkDiagonals();
     }
 
     private boolean isFulfilled() {
-
+        return counter == 9;
     }
 
     private boolean areValuesEqual(int i, int j, int k) {
@@ -61,18 +64,27 @@ public class Board {
     }
 
     private boolean checkRows() {
-        boolean sum = false;
-        for (int i = 0; i < 3; i++) {
-            sum = sum || ;
-        }
+        boolean flag;
+        int i = 0;
+        do{
+            flag = areValuesEqual(i,i+1, i + 2);
+            i += 3;
+        } while (i < 9 && !flag);
+        return flag;
     }
 
     private boolean checkColumns() {
-
+        boolean flag;
+        int i = 0;
+        do {
+            flag = areValuesEqual(i, i + 3, i + 6);
+            i++;
+        } while (i < 3 && !flag);
+        return flag;
     }
 
     private boolean checkDiagonals(){
-
+        return array[4] != null && (areValuesEqual(0,4,6) || areValuesEqual(2,4,6));
     }
 
 
