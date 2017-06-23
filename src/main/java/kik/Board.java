@@ -1,7 +1,5 @@
 package kik;
 
-import java.util.Iterator;
-
 /**
  * Created by RENT on 2017-06-20.
  */
@@ -32,26 +30,7 @@ public class Board {
         return array[position - 1] == null;
     }
 
-    @Override
-    public String toString(){
-        StringBuilder stringBuilder = new StringBuilder();
-        for (int i = 0; i < array.length; i++) {
-            stringBuilder.append(array[i] == null ? (i + 1) : array[i]);
-            stringBuilder.append((i + 1) % 3 == 0 ? "\n" : "|");
-        }
-        return stringBuilder.toString();
-    }
-
-    private boolean checkIsEmpty (Board board) {
-        for (int i = 0; i < board.array.length; i++) {
-            if(board.array[i] == null) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean isGameFinished() {
+    public boolean isGameFinished() {
         return  isFulfilled() || checkRows() || checkColumns() || checkDiagonals();
     }
 
@@ -84,8 +63,20 @@ public class Board {
     }
 
     private boolean checkDiagonals(){
-        return array[4] != null && (areValuesEqual(0,4,6) || areValuesEqual(2,4,6));
+        return array[4] != null && (areValuesEqual(0,4,8) || areValuesEqual(2,4,6));
     }
 
+    @Override
+    public String toString(){
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = 0; i < array.length; i++) {
+            stringBuilder.append(array[i] == null ? (i + 1) : array[i]);
+            stringBuilder.append((i + 1) % 3 == 0 ? "\n" : "|");
+        }
+        return stringBuilder.toString();
+    }
 
+    public int getCounter() {
+        return counter;
+    }
 }

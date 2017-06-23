@@ -20,16 +20,22 @@ public class KikServer {
         BufferedWriter socketOut = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
         Scanner socketIn = new Scanner(socket.getInputStream());
 
+        System.out.println("You're first!");
         Board board = new Board();
-        boolean flag = true;
-        boolean status;
-        while (flag) {
-            System.out.println(board.toString());
-            yourTurn(scanner, socketOut, board);
-            String opponentPosition = socketIn.nextLine();
-            board.addMove(Integer.valueOf(opponentPosition), "O");
+        while (!board.isGameFinished()) {
+            System.out.println(board);
+            if(board.getCounter() % 2 == 0) {
+                yourTurn(scanner, socketOut, board);
+            } else {
+                opponentsTurn(socketIn,board);
+            }
         }
 
+    }
+
+    private static void opponentsTurn(Scanner socketIn, Board board) {
+        String opponentPosition = socketIn.nextLine();
+        board.addMove(Integer.valueOf(opponentPosition), "O");
     }
 
     private static void yourTurn(Scanner scanner, BufferedWriter socketOut, Board board) throws IOException {
