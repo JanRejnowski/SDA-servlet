@@ -14,10 +14,11 @@ public class SumTask implements Runnable {
         this.list = list;
     }
 
-    private void sumList(List<Integer> list) {
-        int sum = list.stream().mapToInt(Integer::intValue).sum();
-        System.out.println("Sum: " + sum);
-    }
+//    private void sumList(List<Integer> list) {
+////        int sum = list.stream().mapToInt(Integer::intValue).sum();
+//        int sum = list.stream().mapToInt(e -> e).sum();
+//        System.out.println("Sum: " + sum);
+//    }
 
     @Override
     public void run() {
@@ -26,5 +27,8 @@ public class SumTask implements Runnable {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+        int sum = list.stream().mapToInt(e -> e).sum();
+        Summer.getInstance().add(sum);
+        Summer.getInstance().test();
     }
 }
