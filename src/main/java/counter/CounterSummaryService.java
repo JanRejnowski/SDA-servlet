@@ -10,23 +10,18 @@ public class CounterSummaryService {
         return ourInstance;
     }
 
-
-    int counter;
+    private int counter;
 
     private CounterSummaryService() {
-
     }
 
-    public synchronized void increase(){
+    public synchronized void increase() {
         counter++;
     }
-
-    public int getCounter() {
-        return counter;
-    }
-    //metoda increase counter
 
     public int get() {
         return counter;
     }
+    //metoda increase counter
+    //get
 }
